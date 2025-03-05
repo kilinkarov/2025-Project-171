@@ -1,6 +1,6 @@
 <div align="center">
   <H1>
-    
+    Robust Detection of AI-Generated Images
   </H1>
   Тип научной работы<br><br>
   Килинкаров Георгий Валерьевич
