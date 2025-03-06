@@ -1,9 +1,7 @@
 | Title                                                                  | Year | Source                                                                                                           | Summary |
 | :--------------------------------------------------------------------- | ---: | :--------------------------------------------------------------------------------------------------------------- | :---------- |
 | GenImage: A Million-Scale Benchmark for Detecting AI-Generated Image                    | - | [paper]([https://ieeexplore.ieee.org/abstract/document/9075201/authors#authors](https://proceedings.neurips.cc/paper_files/paper/2023/file/f4d4a021f9051a6c18183b059117e8b5-Paper-Datasets_and_Benchmarks.pdf))| How to create AI-Generate dataset (GenImages)         |
-
 | AI vs. AI: Can AI Detect AI-Generated Images?                     | 2023 | [paper](https://www.mdpi.com/2313-433X/9/10/199)| Method of detection GAN-images        |
-
 | Zero-Shot Detection of AI-Generated Images                     | 2024 | [paper](https://www.mdpi.com/2313-433X/9/10/199](https://arxiv.org/pdf/2409.15875))| New method without AI-dataset     |
 
 
