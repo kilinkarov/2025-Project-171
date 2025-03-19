@@ -3,7 +3,7 @@
 | GenImage: A Million-Scale Benchmark for Detecting AI-Generated Image                    | - | [paper](https://proceedings.neurips.cc/paper_files/paper/2023/file/f4d4a021f9051a6c18183b059117e8b5-Paper-Datasets_and_Benchmarks.pdf)| How to create AI-Generate dataset (GenImages)         |
 | AI vs. AI: Can AI Detect AI-Generated Images?                     | 2023 | [paper](https://www.mdpi.com/2313-433X/9/10/199)| Method of detection GAN-images        |
 | Zero-Shot Detection of AI-Generated Images                     | 2024 | [paper](https://www.mdpi.com/2313-433X/9/10/199](https://arxiv.org/pdf/2409.15875))| New method without AI-dataset     |
-| Online Detection of AI-Generated ImagesOnline Detection of AI-Generated Images                     | 2023 | [paper](https://openaccess.thecvf.com/content/ICCV2023W/DFAD/html/Epstein_Online_Detection_of_AI-Generated_Images__ICCVW_2023_paper.htm)|  Online-method for detection   |
+| Online Detection of AI-Generated ImagesOnline Detection of AI-Generated Images                     | 2023 | [paper](https://openaccess.thecvf.com/content/ICCV2023W/DFAD/html/Epstein_Online_Detection_of_AI-Generated_Images__ICCVW_2023_paper.html)|  Online-method for detection   |
 
 
 0) Можно попробовать посмотреть на распределение цветов и в целом на цвета, которые используются в AI-гене, есть ощущение, что они одновременно более четкие и мыльные (как будто более мультяшные иногда) (очень странно, конечно, но попробуем позже это формализовать). Ешё на картинках часто размывается фон, не видел, чтобы это чекали. Ешё иногда объект выглядит как-будто вырезанным.
