@@ -5,6 +5,7 @@
 | Zero-Shot Detection of AI-Generated Images                     | 2024 | [paper](https://arxiv.org/abs/2409.15875)| New method without AI-dataset     |
 | Online Detection of AI-Generated ImagesOnline Detection of AI-Generated Images                     | 2023 | [paper](https://openaccess.thecvf.com/content/ICCV2023W/DFAD/html/Epstein_Online_Detection_of_AI-Generated_Images__ICCVW_2023_paper.html)|  Online-method for detection   |
 | CIFAKE: Image Classification and Explainable Identification of AI-Generated Synthetic Images                   | 2024 | [paper](https://ieeexplore.ieee.org/abstract/document/10409290)|  Generated dataset   |
+| Leveraging Frequency Analysis for Deep Fake Image Recognition                  | 2020 | [paper](http://proceedings.mlr.press/v119/frank20a)|  Frequency analysis for real and fake images|
 
 
 
