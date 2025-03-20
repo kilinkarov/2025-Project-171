@@ -1,0 +1,108 @@
+\documentclass{article}
+
+\usepackage{arxiv}
+
+\usepackage{fontspec}
+\setmainfont{Linux Libertine O}
+
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setotherlanguage{russian}
+
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{lipsum}
+\usepackage{graphicx}
+
+\usepackage[numbers]{natbib}
+\usepackage{amsthm}
+\usepackage{doi}
+\usepackage{xcolor}
+
+\usepackage{todonotes}
+\newcommand{\todoask}[1]{\todo[color=blue!40]{\textbf{Ask:} #1}}
+\newcommand{\todocheck}[1]{\todo[color=green!40]{\textbf{Check:} #1}}
+\newcommand{\todoread}[1]{\todo[color=orange!40]{\textbf{Read:} #1}}
+\newcommand{\todocomment}[1]{\todo[color=purple!40]{\textbf{Comment:} #1}}
+
+
+\title{ Robust Detection of AI-Generated Images}
+
+\author{%
+    Kilinkarov Georgii \\
+    Chair of Data Analysis\\
+    Moscow Institute of Physics and Technology\\
+    Moscow, Russia \\
+    \texttt{kilinkarov.gv@phystech.edu} \\
+    \And
+    Daniil Dorin  \\
+    Affiliation \\
+    Address \\
+    \texttt{email} \\
+    \AND
+    Andrey Grabovoy \\
+    Affiliation \\
+    Address \\
+    \texttt{email}
+}
+\date{}
+
+\hypersetup{
+    pdftitle={Comparative Analysis of Data-Driven Approaches for Hydrological Forecasting},
+    pdfsubject={cs.LG},
+    pdfauthor={Eldar Khuzin, Novikov Ivan, Abramov Dmitrii},
+    pdfkeywords={Flood discharge, Rainfall-runoff modeling, More}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+В связи с улучшением качества машиносгенерированных изображений становится очень сложно отличать реальное изоюражение от сгенерированного.  Существующие на данный момент решения имеют низкую обощающую способность. В этой статье тестируем модели, несвязанные с нейронными сетями и изучаем распределение цветов на сгенерированных изоюражениях. Также используем всю существующую информацию и модели, для подбора наилучшего решения, делая валидацию на то, с какой именно моделью работаем. Помимо этого, используем методы графических редакторов, на основе искуственного интеллекта.
+\end{abstract}
+
+\keywords{AI-Generated Image}
+
+\section{Introduction}
+\label{sec:introduction}
+
+В современном мире в связи с развитием генераторов изображений человеческому глазу стало уже слишком сложно отличать настоящие изображение и машиносгенерированное. Ещё сложнее человеку отличить реальное изображение от реального, но с использованием графического редактора.\cite{OnlineDetection} В связи с доступностью этих сервисов стали очень распространены разные виды мошенничества, использующие машиногенерацию. Таким образом задача детекции машинносгенерированных изображений стала очень важна.
+
+
+На данный момент не существует общего подхода к решению этой задачи, устойчивого относильно появления новых моделей. Например, появление диффузионных моделей генерации изображений свело сущесвтующие на тот момент методы к точности около 60 процентов\cite{GenImage}. Таким образом, существующие на данный момент методы имеют низкую обощающую способность. Актуальные научные статьи на эту тему можно поделить на три типа: построение устойчивой модели с помощью добавления новых типов генерации в фазу обучения\cite{AivsAi, OnlineDetection}, решение задачи с помощью методов, не используюцих AI-методы (с помощью классических методов и рассмотрения спектра света)\cite{ZeroShot}, создание новых более мощных датасетов для данный задачи\cite{GenImage, CIFAKE}.
+
+
+AI-модели обучается на всё более новых и новых датасетах, включая в себя новые способы генерации, создаются способы онлайн-обучения \cite{OnlineDetection}, что улучшает постепенно качество, но концептуально не отличается от предыдущих методов и не обеспечивает устойчивость в случае, если появится более иновационный метод генерации. До появления диффузионных моделей высокое качество показывал метод, рассматривающий спектр по Фурье \cite{ZeroShot}. Но на диффузионных моделях не показывает уже высокого качества.
+
+Таким образом, в этой статье мы попробовали объеденить существующие методы и найти новый способ детекции машиносгенерированных изображений. Новизна заключается в объединении методов и построении модели, предполагающей сначала тип генерации, а потом проверяющей на генерацию уже непосредственно с предположением определенного типа генерации.
+
+
+
+\section{Problem statement}
+\label{sec:problem_statement}
+
+
+
+На вход мы получаем $X = [X_1, ..., X_n]$ -  выборка, где $X_i \in N_{255}^{d \cdot d \cdot 3}$ - картинка. \\
+
+Нужно построить отображение $F: N_{255}^{d \cdot d \cdot 3} \rightarrow \{ 0, 1 \} $ - отображение из картинки в её тип (реальная или сгенерированная)
+
+Используется метрика точности(accuracy). А именно:
+\[
+	\operatorname{Accuracy}(f) = \frac{1}{N} \sum_{i=1}^N  I{( y_i = F(x_i))} ,
+\]
+где \( y_i \) --- истинное значение класса, а \( F(x_i) \) --- предсказанное значение.
+
+Теперь нам нужно выбрать наилушчую по этой метрике модель\( f^* \) в своём классе моделей \( \mathcal{F} \), т.е.:
+\[
+	f^* = \arg\min_{F \in \mathcal{F}} \operatorname{MSE}(F).
+\]
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\end{document}
