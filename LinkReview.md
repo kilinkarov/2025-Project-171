@@ -4,6 +4,9 @@
 | AI vs. AI: Can AI Detect AI-Generated Images?                     | 2023 | [paper](https://www.mdpi.com/2313-433X/9/10/199)| Method of detection GAN-images        |
 | Zero-Shot Detection of AI-Generated Images                     | 2024 | [paper](https://arxiv.org/abs/2409.15875)| New method without AI-dataset     |
 | Online Detection of AI-Generated ImagesOnline Detection of AI-Generated Images                     | 2023 | [paper](https://openaccess.thecvf.com/content/ICCV2023W/DFAD/html/Epstein_Online_Detection_of_AI-Generated_Images__ICCVW_2023_paper.html)|  Online-method for detection   |
+| CIFAKE: Image Classification and Explainable Identification of AI-Generated Synthetic Images                   | 2024 | [paper](https://ieeexplore.ieee.org/abstract/document/10409290)|  Generated dataset   |
+
+
 
 
 0) Можно попробовать посмотреть на распределение цветов и в целом на цвета, которые используются в AI-гене, есть ощущение, что они одновременно более четкие и мыльные (как будто более мультяшные иногда) (очень странно, конечно, но попробуем позже это формализовать). Ешё на картинках часто размывается фон, не видел, чтобы это чекали. Ешё иногда объект выглядит как-будто вырезанным.
@@ -11,3 +14,4 @@
 2) Снова про спектр - обнаружили, что в спектре Фурье действительно есть отличие: а именно пик интенсивности у сгенерированных изоюражений (именно у GAN!).Тут использовалисб 12 разных генеративок. Просто fine-tunning СNN
 3) Попытка понять реальное распределение пикселей у реальных моделей. Идея в том, что реальные изображения соответсвуют своей стоимости кодирования, а нереальные нет (что это???)
 4) А че бы не попробовать поюзать доделку реальных изображений некоторыми графическими редакторами. Мб что-то хорошее увидим. В статье основная идея вечного онлайн дообучения с появляпнием новых моделей. Там утверждают, что это работает и чем больше получаемм моделеф тем лучше будем работать в бущуем.
+5) Создание датасета CIFAKE. Используется объяснимый ИИ (XAI)
