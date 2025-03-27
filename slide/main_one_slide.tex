@@ -1,0 +1,93 @@
+\documentclass[aspectratio=169]{beamer}
+%\documentclass{beamer}
+\beamertemplatenavigationsymbolsempty
+\usecolortheme{beaver}
+\setbeamertemplate{blocks}[rounded=true, shadow=true]
+\setbeamertemplate{footline}[page number]
+%
+\usepackage[utf8]{inputenc}
+\usepackage{bm}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext}
+\usepackage{subfig}
+\usepackage[all]{xy} % xy package for diagrams
+\usepackage{array}
+\usepackage{bm}
+\usepackage{multicol}% many columns in slide
+\usepackage{hyperref}% urls
+\usepackage{hhline}%tables
+\usepackage{mathtools}
+\usepackage{graphicx}
+\captionsetup[subfigure]{font={small},labelfont={small}}
+\usepackage{adjustbox}
+% Your figures are here:
+\graphicspath{ {fig/} {../fig/} }
+\newtheorem{theorem_rus}{Теорема}
+\newtheorem{lemma_rus}{Лемма}
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{caption}[numbered]
+\usepackage{ragged2e}
+\usepackage[T1]{fontenc} % Кодировка шрифтов для западных языков
+\usepackage[utf8]{inputenc} % Кодировка UTF-8
+\usepackage[english]{babel} % Поддержка английского языка
+
+\usepackage[style=authoryear,language=english]{biblatex}
+\addbibresource{references.bib} % Файл с библиографией
+\justifying
+\input{newcommands}
+%----------------------------------------------------------------------------------------------------------
+\title[\hbox to 56mm{Краткое название}]{Robust Detection of AI-Generated Images}
+\author[Д.\,Д.~Дорин]{Даниил Дмитриевич Дорин\\
+\small Научный руководитель: к.ф.-м.н. А.\,В.~Грабовой \\
+\small Ассистент: Д.\,Д.~Дорин}
+\institute{Анализ данных ФПМИ МФТИ}
+\date{2025}
+
+%----------------------------------------------------------------------------------------------------------
+\begin{document}
+%----------------------------------------------------------------------------------------------------------
+\begin{frame}
+\thispagestyle{empty}
+\maketitle
+\end{frame}
+
+%----------------------------------------------------------------------------------------------------------
+\begin{frame}{Цель и постановка задачи}
+\begin{block}{Цель работы}
+    Построить модель классификации изображений на машинно-сгенерированные и оригиальные, устойчивую к методам генерации. 
+\end{block}
+\begin{block}{Постановка задачи}
+Задана выборка $$\mathfrak{D} = \{\bm{x_i}, y_i \},\ i= 1, ..., N,$$ где $\bm{x_i} \in \mathbb{N}_0^{H \times W \times C}$~--- изображение размера $H \times W \times C$, $y_i \in \{ 0, 1\}.$ \\
+
+Необходимо построить отображение $\bm{F}: \mathbb{N}_0^{H \times W \times C} \rightarrow \{ 0, 1 \}.$
+
+Для нахождения оптимального отображения \( \bm{F}^* \) в классе моделей \( \mathcal{F} \) используется Binary Cross-Entropy Loss (BCE):
+\[
+	\bm{F}^* = \arg\min_{\bm{F}^* \in \mathcal{F}} \operatorname{BCE}(F).
+\]
+\end{block}
+\end{frame}
+%----------------------------------------------------------------------------------------------------------
+\begin{frame}{Ошибки на генерациях, качество классификатора}
+\begin{figure}
+\centering
+\includegraphics[width=0.76\textwidth]{figs/fake_images.png}
+\end{figure}
+
+% \begin{figure}
+% \centering
+% \includegraphics[width=0.66\textwidth]{figs/PR_ROC.png}
+% \end{figure}
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}{0.10\textwidth}
+        \includegraphics[width=\linewidth]{figs/scheme.png}
+    \end{minipage}
+    \hspace{30pt}
+    \begin{minipage}{0.35\textwidth}
+        \includegraphics[width=\linewidth]{figs/PR_ROC.png}
+    \end{minipage}
+\end{figure}
+\end{frame}
+%----------------------------------------------------------------------------------------------------------
+\end{document} 
